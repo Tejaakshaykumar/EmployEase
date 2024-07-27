@@ -24,7 +24,7 @@ function FindJob() {
     // Fetch job details and saved jobs
     const fetchJobData = async () => {
       try {
-        const jobResponse = await fetch('http://localhost:5000/api/jobDetails');
+        const jobResponse = await fetch('https://employease-3yl4.onrender.com/api/jobDetails');
         const jobData = await jobResponse.json();
         console.log('Fetched job data:', jobData);
         setJobsData(jobData);
@@ -40,7 +40,7 @@ function FindJob() {
     const fetchSavedJobs = async () => {
       try {
         const token = localStorage.getItem('token');
-        const savedJobsResponse = await fetch(`http://localhost:5000/api/savedJobs/${userID}/saved`, {
+        const savedJobsResponse = await fetch(`https://employease-3yl4.onrender.com/api/savedJobs/${userID}/saved`, {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,
@@ -58,10 +58,12 @@ function FindJob() {
     fetchJobData();
     fetchSavedJobs();
   }, [userID]);
+  
+  
 
   const fetchJobDetail = async (jobId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/jobDetails/${jobId}`);
+      const response = await fetch(`https://employease-3yl4.onrender.com/api/jobDetails/${jobId}`);
       const data = await response.json();
       console.log('Fetched job detail:', data);
       setSelectedJob(data);
@@ -83,25 +85,35 @@ function FindJob() {
   };
 
   const handleSearch = () => {
+    const minSalaryFilter = filters.salaryRange[0];
+    const maxSalaryFilter = filters.salaryRange[1];
+  
     const filtered = jobsData.filter((job) => {
-      const withinSalaryRange =
-        job.minSalary >= filters.salaryRange[0] && job.maxSalary <= filters.salaryRange[1];
+      const jobMinSalary = parseInt(job.minSalary, 10);
+    const jobMaxSalary = parseInt(job.maxSalary, 10);
 
+    const withinSalaryRange =
+      jobMinSalary >= minSalaryFilter && jobMaxSalary <= maxSalaryFilter;
       const matchesIndustry = filters.industry ? job.industry === filters.industry : true;
       const matchesJobType = filters.jobType ? job.jobType === filters.jobType : true;
-
+      const matchesLocation = location ? job.location.toLowerCase().includes(location.toLowerCase()) : true;
+      const matchesSearch = search ? (
+        (job.jobRole && job.jobRole.toLowerCase().includes(search.toLowerCase())) ||
+        (job.company && job.company.toLowerCase().includes(search.toLowerCase()))
+      ) : true;
       return (
-        (job.jobRole && job.jobRole.toLowerCase().includes(search.toLowerCase()) ||
-         job.company && job.company.toLowerCase().includes(search.toLowerCase())) &&
-        job.location && job.location.toLowerCase().includes(location.toLowerCase()) &&
         withinSalaryRange &&
         matchesIndustry &&
-        matchesJobType
+        matchesJobType &&
+        matchesLocation &&
+        matchesSearch
       );
     });
-
+  
     setFilteredJobs(filtered);
   };
+  
+  
 
   const handleSaveClick = async (jobId) => {
     const isJobSaved = savedJobs.includes(jobId);
@@ -115,7 +127,7 @@ function FindJob() {
     const userId = user._id;
 
     try {
-      const response = await fetch(`http://localhost:5000/api/savedJobs/${endpoint}`, {
+      const response = await fetch(`https://employease-3yl4.onrender.com/api/savedJobs/${endpoint}`, {
         method,
         headers: {
           Authorization: `Bearer ${token}`,

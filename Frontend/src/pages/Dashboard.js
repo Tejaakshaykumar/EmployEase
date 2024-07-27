@@ -9,7 +9,8 @@ function Dashboard() {
   const navigate = useNavigate();
   const { user, loading, isLoggedIn } = useAuth();
   const [isLoading, setIsLoading] = useState(loading);
-  const [personalDetails, setPersonalDetails] = useState(null);
+  const [personalDetails, setPersonalDetails] = useState(null)
+
   const [savedJobs, setSavedJobs] = useState([]);
   const [appliedJobs, setAppliedJobs] = useState([]);
 
@@ -31,7 +32,7 @@ function Dashboard() {
 
       // Fetch personal details
       fetch(
-        `http://localhost:5000/api/personalDetails/${user.personalDetails}`,
+        `https://employease-3yl4.onrender.com/api/personalDetails/${user.personalDetails}`,
         {
           method: "GET",
           headers: {
@@ -49,7 +50,7 @@ function Dashboard() {
         });
 
       // Fetch saved jobs
-      fetch(`http://localhost:5000/api/savedJobs/${userId}/saved`, {
+      fetch(`https://employease-3yl4.onrender.com/api/savedJobs/${userId}/saved`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -66,9 +67,9 @@ function Dashboard() {
 
       setAppliedJobs(user.appliedJobs);
     }
-  }, [user?._id]);
+  }, [user?._id,personalDetails]);
 
-  if (isLoading || !personalDetails) {
+  if (isLoading ) {
     return (
       <div>
         <div style={{ textAlign: "center", marginTop: "50px" }}>
@@ -93,11 +94,12 @@ function Dashboard() {
         <div className="header1">
           <h1>Seeker Dashboard</h1>
         </div>
+        {personalDetails?.firstName ?
         <div className="personal-details">
           <img
             src={
               personalDetails?.image
-                ? `http://localhost:5000/${personalDetails.image.replace(
+                ? `https://employease-3yl4.onrender.com/${personalDetails.image.replace(
                     /\\/g,
                     "/"
                   )}`
@@ -140,6 +142,11 @@ function Dashboard() {
             </p>
           </div>
         </div>
+        :<>
+        <h1>PAGE DID'NT LOADED, REFRESH THE PAGE!!!</h1>
+
+        </>
+        }
         <div className="job-container">
           <div className="job">
             <ul className="job-details">

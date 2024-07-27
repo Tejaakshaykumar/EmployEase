@@ -14,7 +14,7 @@ function FindCandidate() {
   const [selectedCandidate, setSelectedCandidate] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/personalDetails')
+    fetch('https://employease-3yl4.onrender.com/api/personalDetails')
       .then((response) => response.json())
       .then((data) => {
         setCandidatesData(data);
@@ -115,7 +115,7 @@ function FindCandidate() {
             {filteredCandidates.map((candidate) => (
               <div key={candidate._id} className="job-box">
                 <div className='top'>
-                  <p><img src={candidate.image ? `http://localhost:5000/${candidate.image.replace(/\\/g, '/')}`:(image)}  alt="Candidate" />{candidate.firstName} {candidate.lastName}</p>
+                  <p><img src={candidate.image ? `https://employease-3yl4.onrender.com/${candidate.image.replace(/\\/g, '/')}`:(image)}  alt="Candidate" />{candidate.firstName} {candidate.lastName}</p>
                   <button onClick={() => handleViewClick(candidate._id)} style={{color:'white',backgroundColor:'gray',border:'white',borderRadius:'5px'}}>
                     <i className="bi bi-binoculars-fill"></i>
                   </button>
@@ -134,7 +134,7 @@ function FindCandidate() {
             {selectedCandidate ? (
               <>
               <div className='banner' style={{height:'20vh',display:'flex',flexDirection:'row'}}>
-                 <img src={selectedCandidate.image ? `http://localhost:5000/${selectedCandidate.image.replace(/\\/g, '/')}`:(image)} alt="Company Logo" 
+                 <img src={selectedCandidate.image ? `https://employease-3yl4.onrender.com/${selectedCandidate.image.replace(/\\/g, '/')}`:(image)} alt="Company Logo" 
                 style={{
                   height:'20vh',
                   width:'20vh',

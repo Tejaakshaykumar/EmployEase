@@ -34,7 +34,7 @@ function Dashboard() {
     const fetchEmployeeDetails = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/employeeDetails/${user.employeeDetails}`
+          `https://employease-3yl4.onrender.com/api/employeeDetails/${user.employeeDetails}`
         );
         const data = await response.json();
         setEmployeeDetails(data);
@@ -47,7 +47,7 @@ function Dashboard() {
         const jobDetails = await Promise.all(
           user.jobdetails.map(async (jobId) => {
             const response = await fetch(
-              `http://localhost:5000/api/jobDetails/${jobId}`
+              `https://employease-3yl4.onrender.com/api/jobDetails/${jobId}`
             );
             return response.json();
           })
@@ -117,7 +117,7 @@ function Dashboard() {
           }}
         >
           <img
-            src={employeeDetails.banner ? `http://localhost:5000/${employeeDetails.banner.replace(/\\/g, '/')}` : company}
+            src={employeeDetails.banner ? `https://employease-3yl4.onrender.com/${employeeDetails.banner.replace(/\\/g, '/')}` : company}
             alt="Company Banner"
             style={{
               width: '100%',
@@ -126,7 +126,7 @@ function Dashboard() {
             }}
           />
           <img
-            src={employeeDetails.logo ? `http://localhost:5000/${employeeDetails.logo.replace(/\\/g, '/')}` : image}
+            src={employeeDetails.logo ? `https://employease-3yl4.onrender.com/${employeeDetails.logo.replace(/\\/g, '/')}` : image}
             alt="Company Logo"
             style={{
               position: 'absolute',

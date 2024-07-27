@@ -24,7 +24,7 @@ const ApplyJob = () => {
     const fetchPersonalDetails = async () => {
       if (user?.personalDetails) {
         try {
-          const response = await fetch(`http://localhost:5000/api/personalDetails/${user.personalDetails}`);
+          const response = await fetch(`https://employease-3yl4.onrender.com/api/personalDetails/${user.personalDetails}`);
           if (response.ok) {
             const data = await response.json();
             setPersonalDetails(data); // Access the personal details from the response
@@ -57,7 +57,7 @@ const ApplyJob = () => {
     formData.append('cv', cv);
 
     try {
-      const response = await fetch(`http://localhost:5000/api/jobDetails/${jobId}/apply`, {
+      const response = await fetch(`https://employease-3yl4.onrender.com/api/jobDetails/${jobId}/apply`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${token}`

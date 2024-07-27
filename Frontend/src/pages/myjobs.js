@@ -14,7 +14,7 @@ function MyJobs() {
       const token = localStorage.getItem('token'); 
 
       try {
-        const response = await fetch('http://localhost:5000/api/jobDetails', {
+        const response = await fetch('https://employease-3yl4.onrender.com/api/jobDetails', {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',

@@ -13,7 +13,7 @@ function JobApplicants() {
       const token = localStorage.getItem('token');
 
       try {
-        const response = await fetch(`http://localhost:5000/api/jobDetails/${jobId}/applications`, {
+        const response = await fetch(`https://employease-3yl4.onrender.com/api/jobDetails/${jobId}/applications`, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ function JobApplicants() {
     const token = localStorage.getItem('token');
 
     try {
-      const response = await fetch(`http://localhost:5000/api/jobDetails/${jobId}/applications/${applicationId}`, {
+      const response = await fetch(`https://employease-3yl4.onrender.com/api/jobDetails/${jobId}/applications/${applicationId}`, {
         method: 'PATCH',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -116,7 +116,7 @@ function JobApplicants() {
                 <p><strong>Applicant:</strong> {selectedApplication.user.username}</p>
                 <p><strong>Status:</strong> {selectedApplication.status}</p>
                 <p><strong>Application ID:</strong> {selectedApplication._id}</p>
-                <a href={`http://localhost:5000/${selectedApplication.resume.replace(/\\/g, '/')}`} target="_blank" rel="noopener noreferrer">
+                <a href={`https://employease-3yl4.onrender.com/${selectedApplication.resume.replace(/\\/g, '/')}`} target="_blank" rel="noopener noreferrer">
                   View Resume
                 </a>
                 <p><strong>CV:</strong> {selectedApplication.cv}</p>

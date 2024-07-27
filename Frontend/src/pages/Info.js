@@ -135,7 +135,7 @@ export default function Info() {
           formData.append('logo', logoFile);
           formData.append('banner', bannerFile);
           
-          response = await fetch('http://localhost:5000/api/employeeDetails', {
+          response = await fetch('https://employease-3yl4.onrender.com/api/employeeDetails', {
             method: 'POST',
             headers: {
               Authorization: `Bearer ${token}`,
@@ -143,7 +143,7 @@ export default function Info() {
             body: formData
           });
         } else {
-          response = await fetch('http://localhost:5000/api/personalDetails', {
+          response = await fetch('https://employease-3yl4.onrender.com/api/personalDetails', {
             method: 'POST',
             headers: {
               Authorization: `Bearer ${token}`,
@@ -160,7 +160,8 @@ export default function Info() {
   
         if (response.ok) {
           toast.success('Welcome');
-          user.employee ? navigate('/employeedashboard') : navigate('/dashboard');
+          user.employee ? navigate('/employeedashboard') : <></>;
+          !user.employee ? navigate('/dashboard') : <></>;
         }
       } catch (error) {
         console.error('Error:', error);

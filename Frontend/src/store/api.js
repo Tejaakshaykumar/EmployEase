@@ -1,8 +1,8 @@
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = "https://employease-3yl4.onrender.com/api/auth";
 
 export const sendResetCode = async (email) => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/forgot', {
+      const response = await fetch('https://employease-3yl4.onrender.com/api/auth/forgot', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ export const sendResetCode = async (email) => {
 // ../store/api.js
 export const resetPassword = async ({ code, newPassword }) => {
     try {
-      const response = await fetch('http://localhost:5000/api/auth/reset', {
+      const response = await fetch('https://employease-3yl4.onrender.com/api/auth/reset', {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json',

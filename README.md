@@ -38,8 +38,7 @@
 
 
 ### Project Links:
-- **Website**: [MakeMyVita](https://employease.netlify.app)
-- **Backend**: [MakeMyVita Backend](https://makemyvita.onrender.com)
+- **Website**: [WEBSITE LINK](https://employease.netlify.app)
 - **Source Code**: [GitHub Repository](https://github.com/Tejaakshaykumar/EmployEase)
 
 ### Contact
